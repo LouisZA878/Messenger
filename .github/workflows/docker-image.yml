@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build sakosa878/client:latest ./client --file Dockerfile --tag sakosa878/client:1
+      run: docker build sakosa878/client:latest client --file Dockerfile --tag sakosa878/client:1
