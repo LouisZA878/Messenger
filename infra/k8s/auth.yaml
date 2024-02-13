@@ -25,14 +25,14 @@ spec:
             - name: GOOGLE_CLIENT_ID
               valueFrom:
                 secretKeyRef:
-                  name: google-client-id
-                  key: google
+                  name: google-secret
+                  key: google-client-id
 
             - name: GOOGLE_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: google-client-secret
-                  key: googlesecret
+                  name: google-secret
+                  key: google-client-secret
 
             - name: MONGO_URI
               value: 'mongodb://auth-mongo-srv:27017/auth'
