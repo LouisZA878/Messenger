@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: sakosa878/auth
+          image: sakosa878/auth:1.0
           env:
             # - name: JWT_KEY
             #   valueFrom:
