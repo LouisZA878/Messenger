@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: msg
-          image: localhost:32000/local-msg
+          image: sakosa878/msg
           env:
             - name: MONGO_URI
               value: 'mongodb://msg-mongo-srv:27017/msg'

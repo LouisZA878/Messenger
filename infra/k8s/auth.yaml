@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: localhost:32000/local-auth
+          image: sakosa878/auth
           env:
             # - name: JWT_KEY
             #   valueFrom:

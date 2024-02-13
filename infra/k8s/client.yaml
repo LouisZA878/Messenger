@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: localhost:32000/local-client
+          image: sakosa878/client
 
 ---
 
