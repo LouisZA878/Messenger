@@ -1,4 +1,4 @@
-name: Python application
+name: CI
 
 on:
   push:
@@ -15,6 +15,15 @@ jobs:
     - uses: actions/checkout@v1
     - name: Build & Push Image
       run: |
-        echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "sakosa878" --password-stdin
-        docker image build -t sakosa878/client:latest ./client
-        docker push sakosa878/client:latest
+        echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "${{secrets.DOCKER_USERNAME}}" --password-stdin
+        docker image build -t ${{secrets.DOCKER_USERNAME}}/client:latest ./client
+        # Increment version tag
+        # Example: Get the latest tag, increment it, and use it
+        LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
+        # Increment tag
+        NEW_TAG=$(echo $LATEST_TAG | awk -F. '{$NF++;print}' OFS=.)
+        docker tag ${{secrets.DOCKER_USERNAME}}/client:latest ${{secrets.DOCKER_USERNAME}}/client:$NEW_TAG
+        docker push ${{secrets.DOCKER_USERNAME}}/client:$NEW_TAG
+        
+        docker image build -t ${{secrets.DOCKER_USERNAME}}/client:latest ./client
+        docker push ${{secrets.DOCKER_USERNAME}}/client:latest
