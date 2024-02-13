@@ -11,11 +11,10 @@ jobs:
         uses: actions/checkout@v2
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_TOKEN }}
+      # Log in to Docker Hub or another Docker registry
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
       - name: Build Client
         run: |
           docker buildx build --push --tag ${{ secrets.DOCKER_USERNAME }}/client:latest ./client
@@ -33,9 +32,6 @@ jobs:
       - name: Build Image 3
         run: docker build -t sakosa878/msg ./message
 
-      # Log in to Docker Hub or another Docker registry
-      - name: Log in to Docker Hub
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       # Push images to Docker Hub
       - name: Push Image 1
