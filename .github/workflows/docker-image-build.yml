@@ -12,20 +12,20 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to Docker Hub
-        uses: docker/login-action@v1
+        uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKER_ID }}
+          username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
       - name: Build Client
         run: |
-          docker buildx build --push --tag sakosa878/client:latest ./client
+          docker buildx build --push --tag ${{ secrets.DOCKER_USERNAME }}/client:latest ./client
           # Increment version tag
           # Example: Get the latest tag, increment it, and use it
           LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
           # Increment tag
           NEW_TAG=$(echo $LATEST_TAG | awk -F. '{$NF++;print}' OFS=.)
-          docker tag sakosa878/client:latest sakosa878/client:$NEW_TAG
-          docker push sakosa878/client:$NEW_TAG
+          docker tag ${{ secrets.DOCKER_USERNAME }}/client:latest ${{ secrets.DOCKER_USERNAME }}/client:$NEW_TAG
+          docker push ${{ secrets.DOCKER_USERNAME }}/client:$NEW_TAG
 
       - name: Build Image 2
         run: docker build -t sakosa878/auth ./auth
