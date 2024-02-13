@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp-argo-application
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/LouisZA878/Messenger.git
+    targetRevision: HEAD
+    path: k8s
+  destination:
+  # server key in this case means argocd is inside the cluster thus is pointing to itself
+    server: https://kubernetes.default.svc
+    namespace: myapp
+
+    syncPolicy:
+      syncOptions:
+        - CreateNameSpace=true
+      
+      automated:
+        selfHeal: true
+        prune: true

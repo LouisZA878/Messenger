@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: msg
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: msg
+  template:
+    metadata:
+      labels:
+        app: msg
+    spec:
+      containers:
+        - name: msg
+          image: localhost:32000/local-msg
+          env:
+            - name: MONGO_URI
+              value: 'mongodb://msg-mongo-srv:27017/msg'
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: msg-srv
+spec:
+  selector:
+    app: msg
+  ports:
+    - name: msg
+      protocol: TCP
+      port: 3002
+      targetPort: 3002
