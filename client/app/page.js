@@ -14,7 +14,7 @@ export default async function Home() {
 
   return (
     <div>
-        It works
+        Will it work now tho
     </div>
   )
 }
