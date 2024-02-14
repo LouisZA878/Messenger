@@ -1,4 +1,4 @@
-name: Python application
+name: Messenger App
 
 on:
   push:
@@ -18,3 +18,13 @@ jobs:
         echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "sakosa878" --password-stdin
         docker image build -t sakosa878/client:latest ./client
         docker push sakosa878/client:latest
+    - name: Build & Push Image
+      run: |
+        echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "sakosa878" --password-stdin
+        docker image build -t sakosa878/auth:latest ./auth
+        docker push sakosa878/auth:latest
+    - name: Build & Push Image
+      run: |
+        echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "sakosa878" --password-stdin
+        docker image build -t sakosa878/msg:latest ./messages
+        docker push sakosa878/msg:latest
