@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage("build"){
             steps {
-                echo 'But is it really building? IDk if itll work the app'
+                echo 'Aight lets try this'
             }
         }
         stage("test"){
