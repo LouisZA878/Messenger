@@ -4,12 +4,12 @@ pipeline {
     stages {
         stage("build"){
             steps {
-                echo 'Aight lets try'
+                echo 'Aight lets try this'
             }
         }
         stage("test"){
             steps {
-                echo 'lets go'
+                echo 'lets'
             }
         }
         stage("deploy"){
