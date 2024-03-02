@@ -1,30 +1,30 @@
-name: Messenger App
+# name: Messenger App
 
-on:
-  push:
-   branches: [ master ]
-  pull_request:
-    branches: [ master ]
+# on:
+#   push:
+#    branches: [ master ]
+#   pull_request:
+#     branches: [ master ]
       
-jobs:
-  build:
+# jobs:
+#   build:
 
-    runs-on: ubuntu-latest
+#     runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v1
-    - name: Build & Push Image
-      run: |
-        echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "sakosa878" --password-stdin
-        docker image build -t sakosa878/client:latest ./client
-        docker push sakosa878/client:latest
-    - name: Build & Push Image
-      run: |
-        echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "sakosa878" --password-stdin
-        docker image build -t sakosa878/auth:latest ./auth
-        docker push sakosa878/auth:latest
-    - name: Build & Push Image
-      run: |
-        echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "sakosa878" --password-stdin
-        docker image build -t sakosa878/msg:latest ./messages
-        docker push sakosa878/msg:latest
+#     steps:
+#     - uses: actions/checkout@v1
+#     - name: Build & Push Image
+#       run: |
+#         echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "sakosa878" --password-stdin
+#         docker image build -t sakosa878/client:latest ./client
+#         docker push sakosa878/client:latest
+#     - name: Build & Push Image
+#       run: |
+#         echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "sakosa878" --password-stdin
+#         docker image build -t sakosa878/auth:latest ./auth
+#         docker push sakosa878/auth:latest
+#     - name: Build & Push Image
+#       run: |
+#         echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "sakosa878" --password-stdin
+#         docker image build -t sakosa878/msg:latest ./messages
+#         docker push sakosa878/msg:latest
