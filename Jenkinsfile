@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage("build"){
             steps {
-                echo 'Aight lets '
+                sh 'ls'
             }
         }
         stage("test"){
